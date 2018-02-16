@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="TodoApp">
+<head>
+	<title>Sample App</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Angular does some things with CSS so it's good to load this in the head -->
+  <script src="http://code.angularjs.org/1.2.6/angular.js"></script> 
+</head>
+<body>
+  <div ng-controller="TodoController">
+  <div class="container"  >
+    <div class="col-lg-12">
+    <h1>Todos</h1>
+    <div class="row">
+       <fieldset class="form-group mb-1 col-md-6 pl-0">
+                      
+    <p id="empty" ng-show="nullvalues">You don't have any todos! Add one now:</p>
+    <div id="todos" class="unstyled">
+      <div ng-repeat="todo in tasks_json track by $index" >
+        <div ng-show="todo.done==false && todo.deleted!= true">
+        <div class="col-sm-12 control-label" >
+          
+           <div class="col-sm-6">
+            <input type="checkbox" ng-model="todo.done" ng-change="change($index+1)" />
+          {{todo.text}}
+        </div>
+        <div class="col-sm-2">
+          <a href type="button" ng-click="edit($index+1)" >Edit</a> 
+        </div>
+        <div class="col-sm-2">
+          <a href id="remove-completed-btn" ng-click="clearCompleted($index+1)" ng-model="todo.deleted">Remove</a>
+        </div>
+        </div>
+        </div>
+      </div>
+
+      </div>
+      </fieldset>
+    </div>
+  
+</div>
+
+
+<div class="row">
+    <form class="form-inline">
+      <input type="hidden" ng-model="id" />
+      <fieldset class="form-group mb-1 col-md-12 pl-0" style="margin-bottom: 50px">
+      <label  class="col-sm-2 control-label">Title</label>
+
+      <div class="col-sm-6">
+      <input id="todo-title" type="text" ng-model="todoText" /><br>
+    </div>
+  </fieldset>
+
+    
+     <fieldset class="form-group mb-1 col-md-12 pl-0" style="margin-bottom: 50px">
+      <label  class="col-sm-2 control-label">Description</label>
+       <div class="col-sm-6">
+      <input id="todo-desc" type="text" ng-model="descText" />
+    </div>
+  </fieldset>
+
+
+  <div class="col-sm-3"></div>
+
+<div ng-show="updatebtn== false">
+      <button id="add-btn"  class="btn btn-success" ng-click="addTodo()">Add</button>
+    </div>
+    <div ng-show="updatebtn== true">
+      <button id="add-btn"  class="btn btn-success" ng-click="update(id)">Update</button>
+</div>
+    </form>
+  </div>
+    
+ 
+  </div>
+
+
+
+<br>
+<br>
+<br>
+
+
+<div class="container" >
+ <div class="col-lg-6">
+    <h3>Completed Items</h3>
+    <div class="row">
+      <fieldset class="form-group mb-1 col-md-6 pl-0">
+                      
+
+    <p id="empty" ng-hide="todos.length || !loaded">You don't have any completed items! Add one now:</p>
+
+    <div>
+     
+      <div ng-repeat="todo in tasks_json">
+       <div ng-show="todo.done==true">
+         <div class="col-sm-12 control-label"  >
+          
+           <div class="col-sm-6">
+            <input type="checkbox" ng-model="todo.done" />
+          {{todo.text}}
+        </div>
+        
+        </div>
+      </div>
+      </div>
+    </div>
+   
+    
+  </fieldset>
+  </div>
+</div>
+</div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script type="text/javascript" src="/todo.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
