@@ -2,16 +2,7 @@ var todoApp = angular.module('TodoApp', []);
 
 todoApp.controller('TodoController', function($scope, $http, $filter, $window) {
 
-  // $scope.todos = [];
 
-  // Get all todos
-  // $http.get('/todos')
-  //   .success(function(todos) {
-  //     $scope.loaded = true;
-  //     $scope.todos = todos;
-  //   }).error(function(err) {
-  //     alert(err);
-  //   });
 
 $scope.todo = [
     {id:null,text:'', descText:''}];
@@ -33,10 +24,6 @@ $scope.list_temp = localStorage.getItem('tasks');
               }
 
 
-// $scope.todos = [
-//     {id:1,text:'Book an appointment', descText:'Take the appointment from doctor', done:false},         
-//     {id:2,text: 'Invest Money', descText:'Invest money in mutual funds', done:false}
-//   ];
 
   
   $scope.addTodo = function() {
